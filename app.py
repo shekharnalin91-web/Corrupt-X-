@@ -19,7 +19,7 @@ from analyzer import ClauseAnalyzer
 
 # Setup Flask application
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
+FRONTEND_DIR = BASE_DIR
 
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
 CORS(app)  # Allow cross-origin requests for local dev / dual-mode hosting
@@ -43,7 +43,17 @@ except Exception as e:
 
 @app.route("/")
 def serve_index():
-    return send_from_directory(FRONTEND_DIR, "index.html")
+    index_path = os.path.join(BASE_DIR, "index.html")
+
+    if not os.path.isfile(index_path):
+        return f"""
+        <h1>index.html not found</h1>
+        <p>BASE_DIR: {BASE_DIR}</p>
+        <p>Files Render can see:</p>
+        <pre>{os.listdir(BASE_DIR)}</pre>
+        """, 500
+
+    return send_file(index_path)
 
 @app.route("/scanner")
 def serve_scanner():
