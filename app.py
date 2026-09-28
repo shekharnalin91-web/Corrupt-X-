@@ -19,7 +19,7 @@ from analyzer import ClauseAnalyzer
 
 # Setup Flask application
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "frontend"))
+FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
 CORS(app)  # Allow cross-origin requests for local dev / dual-mode hosting
