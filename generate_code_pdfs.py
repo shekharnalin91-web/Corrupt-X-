@@ -6,7 +6,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Preformatted, Table, TableStyle
 from reportlab.pdfgen import canvas
 
-BASE_DIR = r"C:\Users\NALIN SHEKHAR\.gemini\antigravity\scratch\tc-red-flag-scanner"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(BASE_DIR, "pdf_exports")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
